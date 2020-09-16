@@ -21,25 +21,23 @@ class MoviesController < ApplicationController
     else  
       column ||='release_date'
     end
-    
     session[:column] = column
     
-    @ratings_selected = params[:ratings]
+    @checkbox = params[:ratings]
     
-    if(@ratings_selected)
-      @ratings_selected_keys = @ratings_selected.keys
+    if(@checkbox)
+      @checkbox_selected = @checkbox.keys
     end
     
-    if(!@ratings_selected and session[:ratings] )
-      @ratings_selected = session[:ratings]
-      @ratings_selected_keys = session[:ratings].keys
+    if(!@checkbox and session[:ratings] )
+      @checkbox = session[:ratings]
+      @checkbox_selected = session[:ratings].keys
     else  
-      @ratings_selected_keys||=@all_ratings
+      @checkbox_selected||=@all_ratings
     end
     
-    session[:ratings] = @ratings_selected
-  
-    @movies = Movie.where(rating: @ratings_selected_keys).order(column)
+    session[:ratings] = @checkbox
+    @movies = Movie.where(rating: @checkbox_selected).order(column)
     
   end
 
