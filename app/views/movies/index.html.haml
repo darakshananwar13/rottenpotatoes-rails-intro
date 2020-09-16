@@ -11,9 +11,9 @@
 %table#movies.table.table-striped.col-md-12
   %thead
     %tr
-      %th{:id => 'title_header',:class => helper("title")}=link_to "Movie Title", :sort_column => "title", :ratings => @ratings_selected
+      %th{:id => 'title_header',:class => helper("title")}=link_to "Movie Title", :column => "title", :ratings => @ratings_selected
       %th Rating
-      %th{:id => 'release_date_header',:class => helper("release_date")}=link_to "Release Date", :sort_column => "release_date", :ratings => @ratings_selected
+      %th{:id => 'release_date_header',:class => helper("release_date")}=link_to "Release Date", :column => "release_date", :ratings => @ratings_selected
       %th More Info
 
   %tbody

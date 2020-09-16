@@ -14,15 +14,15 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     @all_ratings=Movie.uniq.pluck(:rating)
     
-    sort_column = params[:sort_column]
+    column = params[:column]
     
-    if(!sort_column and session[:sort_column])
-      sort_column = session[:sort_column]
+    if(!column and session[:column])
+      column = session[:column]
     else  
-      sort_column ||='release_date'
+      column ||='release_date'
     end
     
-    session[:sort_column] = sort_column
+    session[:column] = column
     
     @ratings_selected = params[:ratings]
     
@@ -39,7 +39,7 @@ class MoviesController < ApplicationController
     
     session[:ratings] = @ratings_selected
   
-    @movies = Movie.where(rating: @ratings_selected_keys).order(sort_column)
+    @movies = Movie.where(rating: @ratings_selected_keys).order(column)
     
   end
 
